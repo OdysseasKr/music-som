@@ -9,7 +9,7 @@ def unison_shuffled_copies(a, b):
     return a[p], b[p]
 
 # Create input
-input_file = h5py.File('testwithoutchroma.h5', 'r')
+input_file = h5py.File('ds.h5', 'r')
 
 num_samples_per_class = 80
 sample_dimension = input_file['vector_size'][0]
@@ -31,17 +31,18 @@ for label in genres:
         train_samples[train_index] = np.array(sample)
         train_index += 1
 
-
 somap = SelfOrganisingMap(4, sample_dimension, set(train_labels.tolist()))
-
-
 train_samples, train_labels = unison_shuffled_copies(train_samples, train_labels)
 
+print("Training Map...")
 somap.train(train_samples[:21],train_labels[:21],1,3)
 somap.train(train_samples[21:31],train_labels[21:31],0.5,3)
 somap.train(train_samples[31:41],train_labels[31:41],0.1,1)
 somap.train(train_samples[41:],train_labels[41:],0.1,0.1)
 
+print(somap.sample_labels)
 print(somap.Wl)
-somap.plot_map_labels(['brown', 'yellow', 'black', 'magenta',
+somap.plot_map_labels(['brown', 'yellow', 'cyan', 'magenta',
             'green','red', 'purple', 'blue'])
+
+somap.export_map("map.h5")
