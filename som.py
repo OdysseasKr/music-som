@@ -111,18 +111,23 @@ class SelfOrganisingMap:
 
             win = item.argmax()
             if item[win] == 0:
-                alpha = 0
+                patchs.append(
+                    patches.Rectangle(
+                        (x*size, y*size), size, size,
+                        alpha=1,
+                        facecolor='w')
+                )
+                texts.append("no class")
             else:
                 #alpha = item[win] / float(sum(item))
                 alpha = item[win] / 80.0
-
-            patchs.append(
-                patches.Rectangle(
-                    (x*size, y*size), size, size,
-                    alpha=alpha,
-                    facecolor=colors[win])
-            )
-            texts.append(self.sample_labels[win])
+                patchs.append(
+                    patches.Rectangle(
+                        (x*size, y*size), size, size,
+                        alpha=alpha,
+                        facecolor=colors[win])
+                )
+                texts.append(self.sample_labels[win])
 
         fig = plt.figure()
         ax = fig.add_subplot(111, aspect='equal')
