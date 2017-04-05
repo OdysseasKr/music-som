@@ -1,11 +1,7 @@
 # music-som
 Kohonen self organising maps for music clustering in Python
 
-This repo contains a general implementation of Self Organising Maps in Python. Required packages:
-- Librosa
-- Numpy
-- H5py
-- Matplotlib (Optional)
+This repo contains a general implementation of Self Organising Maps in Python.
 
 This repo also contains scripts for experimenting with the GTZAN Dataset containing 30-second music tracks categorised by genre. Download the dataset [here](http://marsyas.info/downloads/datasets.html).
 
