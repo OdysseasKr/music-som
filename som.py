@@ -138,5 +138,5 @@ class SelfOrganisingMap:
             cy = ry + p.get_height()/2.0
             ax.annotate(texts[i], (cx, cy), color='black', weight='bold',
                 fontsize=6, ha='center', va='center')
-
+        plt.axis('off')
         plt.show()
