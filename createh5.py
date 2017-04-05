@@ -8,7 +8,7 @@ import os
 def create_dataset(input_path, output_path):
     print("Creating h5 from {} to file {}".format(input_path, output_path))
 
-    feature_vector_dim = 25861#41377
+    feature_vector_dim = 35
     labels = os.listdir(input_path)
     data_matrix = np.empty((len(labels)*100, feature_vector_dim))
     data_labels = np.chararray((len(labels)*100,1), itemsize=10)
@@ -27,11 +27,14 @@ def create_dataset(input_path, output_path):
 
             try:
                 y, sr = librosa.load(os.path.join(instrument_dir, track))
+                stft = np.abs(librosa.stft(y))
 
                 arr = np.empty(feature_vector_dim)
                 arr[0] = librosa.beat.beat_track(y, sr)[0]
-                arr[1:25861] = librosa.feature.mfcc(y, sr).flatten()
-                #arr[25861:] = librosa.feature.chroma_cens(y, sr).flatten()
+                arr[1] = librosa.estimate_tuning(y, sr)
+                arr[2:8] = np.mean(librosa.feature.tonnetz(librosa.effects.harmonic(y), sr), axis=1)
+                arr[8:28] = np.mean(librosa.feature.mfcc(y, sr), axis=1)
+                arr[28:] = np.mean(librosa.feature.spectral_contrast(S=stft, sr=sr), axis=1)
 
                 data_matrix[index] = arr
                 data_labels[index] = label
