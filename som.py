@@ -104,6 +104,7 @@ class SelfOrganisingMap:
 
         size = 1.0 / self.map_dimension
         patchs = []
+        texts = []
         for i, item in enumerate(self.Wl):
             x = i % self.map_dimension
             y = i / self.map_dimension
@@ -121,9 +122,16 @@ class SelfOrganisingMap:
                     alpha=alpha,
                     facecolor=colors[win])
             )
+            texts.append(self.sample_labels[win])
 
         fig = plt.figure()
         ax = fig.add_subplot(111, aspect='equal')
-        for p in patchs:
+        for i, p in enumerate(patchs):
             ax.add_patch(p)
+            rx, ry = p.get_xy()
+            cx = rx + p.get_width()/2.0
+            cy = ry + p.get_height()/2.0
+            ax.annotate(texts[i], (cx, cy), color='black', weight='bold',
+                fontsize=6, ha='center', va='center')
+
         plt.show()
