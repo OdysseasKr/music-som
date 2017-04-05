@@ -1,7 +1,7 @@
 # music-som
 Kohonen self organising maps for music clustering in Python
 
-This repo contains a general implementation of a Self Organising Map in Python. Required packages:
+This repo contains a general implementation of Self Organising Maps in Python. Required packages:
 - Librosa
 - Numpy
 - H5py
