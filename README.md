@@ -5,6 +5,12 @@ This repo contains a general implementation of Self Organising Maps in Python.
 
 This repo also contains scripts for experimenting with the GTZAN Dataset containing 30-second music tracks categorised by genre. Download the dataset [here](http://marsyas.info/downloads/datasets.html).
 
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/OdysseasKr/music-som/master/figure_1.png" alt="demo figure" width="533" height="400">
+</p>
+
+
 ## Using the dataset
 To use the dataset, extract the files and use the createh5.py file to extract features using Librosa and create a .h5 file containing the training set. Usage:
 ```bash
