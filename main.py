@@ -15,7 +15,7 @@ num_samples_per_class = 80
 sample_dimension = input_file['vector_size'][0]
 
 num_of_samples = (len(input_file.keys())-1) * num_samples_per_class
-genres = input_file.keys()
+genres = list(input_file.keys())
 genres.remove('vector_size')
 
 train_labels = np.chararray((num_of_samples,), itemsize=10)
