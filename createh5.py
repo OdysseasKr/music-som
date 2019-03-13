@@ -66,7 +66,8 @@ def create_dataset(input_path, output_path):
     # Write to file
     out_file = h5py.File(output_path, 'w')
     for l, label in enumerate(labels):
-        out_file.create_dataset(label, data=data_matrix[(data_labels == label).flatten()])
+        labeled_data = data_matrix[[d[0] == label.encode('UTF-8') for d in data_labels]].flatten()
+        out_file.create_dataset(label, data=labeled_data)
     out_file.create_dataset('vector_size', data=[feature_vector_dim])
     out_file.close()
 
